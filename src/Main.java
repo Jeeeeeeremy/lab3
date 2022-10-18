@@ -3,4 +3,8 @@ public class Main {
         System.out.println("master");
 
     }
+
+    public void out(){
+
+    }
 }
