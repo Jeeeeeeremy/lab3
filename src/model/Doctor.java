@@ -1,4 +1,4 @@
-package Initialization;
+package model;
 
 import java.util.ArrayList;
 
