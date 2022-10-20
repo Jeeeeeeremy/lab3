@@ -2,6 +2,7 @@ package Initialization;
 
 import model.Doctor;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -11,9 +12,9 @@ public class Main {
     //<hospitalName, DoctorSet>
     HashMap<String,HashSet> hospital = new HashMap<>();
     //<communityName, hospitalName>
-    HashMap<String,String> communityDirectory = new HashMap<>();
+    HashMap<String,ArrayList<String>> communityDirectory = new HashMap<>();
     //<cityName,communityName>
-    HashMap<String,String> cityDirectory = new HashMap<>();
+    HashMap<String, ArrayList<String>> cityDirectory = new HashMap<>();
 
     public static void main(String[] args) {
         //initialize all the three login UIs
