@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class CommunityAdminImp implements Admin {
-    String curCom;
-    String login;
-    String password;
+    private String curCom;
+    private String login;
+    private String password;
 
     public CommunityAdminImp() {
         curCom = null;
@@ -22,6 +22,29 @@ public class CommunityAdminImp implements Admin {
         this.password = password;
     }
 
+    public void setCurCom(String curCom) {
+        this.curCom = curCom;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getCurCom() {
+        return curCom;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     @Override
     public ArrayList<String> checkCommunityByCity(String city) {
