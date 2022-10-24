@@ -7,12 +7,12 @@ public class Diagnosis {
     String pulseRate;
     String rateOfBreathing;
     String bloodPressure;
-    ArrayList<String> diagnosis;
+    String diagnosis;
 
     public Diagnosis() {
     }
 
-    public Diagnosis(String bodyTemperature, String pulseRate, String rateOfBreathing, String bloodPressure, ArrayList<String> diagnosis) {
+    public Diagnosis(String bodyTemperature, String pulseRate, String rateOfBreathing, String bloodPressure, String diagnosis) {
         this.bodyTemperature = bodyTemperature;
         this.pulseRate = pulseRate;
         this.rateOfBreathing = rateOfBreathing;
@@ -43,7 +43,7 @@ public class Diagnosis {
         return bloodPressure;
     }
 
-    public ArrayList<String> getDiagnosis() {
+    public String getDiagnosis() {
         return diagnosis;
     }
 
@@ -63,7 +63,18 @@ public class Diagnosis {
         this.bloodPressure = bloodPressure;
     }
 
-    public void addDiagnosis(String diagnosis) {
-        this.diagnosis.add(diagnosis);
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+
+    @Override
+    public String toString() {
+        return "Diagnosis{" +
+                "bodyTemperature='" + bodyTemperature + '\'' +
+                ", pulseRate='" + pulseRate + '\'' +
+                ", rateOfBreathing='" + rateOfBreathing + '\'' +
+                ", bloodPressure='" + bloodPressure + '\'' +
+                ", diagnosis=" + diagnosis +
+                '}';
     }
 }

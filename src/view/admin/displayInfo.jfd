@@ -1,0 +1,22 @@
+JFDML JFormDesigner: "8.0.0.0.194" Java: "17.0.4" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundleName": "form"
+	"i18n.keyPrefix": "displayInfo"
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:75:p, comp info_label:::p:785:p, space ::128:x}}"
+			"$verticalGroup": "par l {seq l {space :p:78:p, comp info_label:::p:513:p, space ::103:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "info_label"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 990, 725 )
+		} )
+	}
+}

@@ -6,7 +6,7 @@ public class Patient {
     String city;
     String community;
     String name;
-    ArrayList<Diagnosis> record;
+    ArrayList<Diagnosis> record = new ArrayList<>();
 
     public Patient() {
     }

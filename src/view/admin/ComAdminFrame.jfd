@@ -7,8 +7,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:207:p, par l {seq {comp seachDoctorList:::p::p, space :p:40:p, comp button1:::p::p}, comp scrollPane1:::p:664:p}, space ::232:x}}"
-			"$verticalGroup": "par l {seq l {space :p:112:p, comp scrollPane1:::p:274:p, space :p:44:p, par b {comp seachDoctorList::b:p::p, comp button1::b:p::p}, space ::174:x}}"
+			"$horizontalGroup": "par l {seq {space :p:207:p, par l {comp scrollPane1:::p:664:p, seq l {par l {comp seachDoctorList:::p::p, comp button4:::p::p}, space :p:119:p, par l {comp button1::l:p::p, comp button3::l:p::p, comp button6::l:p::p}, space :p:107:p, par l {comp button5:::p::p, comp button2:::p::p, comp button7:::p::p}}}, space ::232:x}}"
+			"$verticalGroup": "par l {seq l {space :p:112:p, comp scrollPane1:::p:274:p, space :p:44:p, par b {comp seachDoctorList::b:p::p, comp button2::b:p::p, comp button1::b:p::p}, space s:::p, par b {comp button3::b:p::p, comp button4::b:p::p, comp button5::b:p::p}, space s:::p, par b {comp button6::b:p::p, comp button7::b:p::p}, space ::78:x}}"
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -25,6 +25,32 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
 				"text": new FormMessage( null, "ComAdminFrame.button1.text" )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": new FormMessage( null, "ComAdminFrame.button2.text" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "delete", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": new FormMessage( null, "ComAdminFrame.button3.text" )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button4"
+				"text": new FormMessage( null, "ComAdminFrame.button4.text" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "ViewPatient", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button5"
+				"text": new FormMessage( null, "ComAdminFrame.button5.text" )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button6"
+				"text": new FormMessage( null, "ComAdminFrame.button6.text" )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button7"
+				"text": new FormMessage( null, "ComAdminFrame.button7.text" )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

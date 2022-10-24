@@ -8,6 +8,7 @@ import java.awt.event.*;
 import controller.Admin.AdminDir;
 import controller.Admin.CommunityAdminImp;
 import model.Doctor;
+import model.Patient;
 
 import java.awt.*;
 import java.util.*;
@@ -21,14 +22,14 @@ import javax.swing.border.*;
  */
 public class MainView extends JFrame {
     AdminDir adminDir;
-    List<String> patientList;
+    List<Patient> patientList;
     HashMap<String, ArrayList<Doctor>> hospitals;
     HashMap<String,ArrayList<String>> communityDirectory;
     HashMap<String, ArrayList<String>> cityDirectory;
-    HashMap<String,ArrayList<String>> ComToPatients;
-    public MainView(AdminDir adminDir, List<String> patientList,
+    HashMap<String,ArrayList<Patient>> ComToPatients;
+    public MainView(AdminDir adminDir, List<Patient> patientList,
                     HashMap<String, ArrayList<Doctor>> hospitals, HashMap<String,ArrayList<String>> communityDirectory,
-                    HashMap<String, ArrayList<String>> cityDirectory,HashMap<String,ArrayList<String>> ComToPatients) {
+                    HashMap<String, ArrayList<String>> cityDirectory,HashMap<String,ArrayList<Patient>> ComToPatients) {
         initComponents();
         this.adminDir = adminDir;
         this.patientList = patientList;
@@ -72,7 +73,6 @@ public class MainView extends JFrame {
         }
         if (ComAdmin.isSelected()){
             if (adminDir.getCommunityAdmins().get(login.getText()).getPassword().equals(password.getText())){
-                new ComAdminFrame().setVisible(true);
                 //load community admin page
                 CommunityAdminImp curAdmin = adminDir.getCommunityAdmins().get(login.getText());
                 new ComAdminFrame(curAdmin,communityDirectory.get(curAdmin.getCurCom()),ComToPatients.get(curAdmin.getCurCom()),hospitals).setVisible(true);

@@ -1,7 +1,9 @@
 package Initialization;
 
 import controller.Admin.AdminDir;
+import model.Diagnosis;
 import model.Doctor;
+import model.Patient;
 import view.admin.MainView;
 
 import javax.print.Doc;
@@ -14,8 +16,8 @@ public class main {
 
 
     public static void main(String[] args) {
-        HashMap<String,ArrayList<String>> ComToPatients = new HashMap<>();
-        ArrayList<String>  patients = new ArrayList<>();
+        HashMap<String,ArrayList<Patient>> ComToPatients = new HashMap<>();
+        ArrayList<Patient>  patients = new ArrayList<>();
         //<hospitalName, DoctorList>
         HashMap<String, ArrayList<Doctor>> hospitals = new HashMap<>();
         //<communityName, hospitalName>
@@ -32,9 +34,23 @@ public class main {
         testdoctor.add(new Doctor("d1","h1"));
         testdoctor.add(new Doctor("d2","h1"));
         testdoctor.add(new Doctor("d3","h1"));
+        ArrayList<Doctor> testdoctor2 = new ArrayList<>();
+        testdoctor2.add(new Doctor("d1","h1"));
+        testdoctor2.add(new Doctor("d2","h1"));
+        testdoctor2.add(new Doctor("d3","h1"));
+        ArrayList<Doctor> testdoctor3 = new ArrayList<>();
+        testdoctor3.add(new Doctor("d1","h1"));
+        testdoctor3.add(new Doctor("d2","h1"));
+        testdoctor3.add(new Doctor("d3","h1"));
         hospitals.put("h1",testdoctor);
-        hospitals.put("h2",testdoctor);
-        hospitals.put("h3",testdoctor);
+        hospitals.put("h2",testdoctor2);
+        hospitals.put("h3",testdoctor3);
+        //patients.add(new Patient("c1","c2","p1"));
+        ArrayList<Patient> ps = new ArrayList<>();
+        Patient pp = new Patient("c1","c2","p1");
+        pp.addRecord(new Diagnosis("1","2","3","4","5"));
+        ps.add(pp);
+        ComToPatients.put("test",ps);
         //initialize all the three login UIs
         AdminDir adminDir = new AdminDir();
         MainView mainView = new MainView(adminDir, patients,hospitals,communityDirectory,cityDirectory,ComToPatients);
