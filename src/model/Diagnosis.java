@@ -2,17 +2,17 @@ package model;
 
 import java.util.ArrayList;
 
-public class VitalSigns {
+public class Diagnosis {
     String bodyTemperature;
     String pulseRate;
     String rateOfBreathing;
     String bloodPressure;
     ArrayList<String> diagnosis;
 
-    public VitalSigns() {
+    public Diagnosis() {
     }
 
-    public VitalSigns(String bodyTemperature, String pulseRate, String rateOfBreathing, String bloodPressure, ArrayList<String> diagnosis) {
+    public Diagnosis(String bodyTemperature, String pulseRate, String rateOfBreathing, String bloodPressure, ArrayList<String> diagnosis) {
         this.bodyTemperature = bodyTemperature;
         this.pulseRate = pulseRate;
         this.rateOfBreathing = rateOfBreathing;
@@ -20,7 +20,7 @@ public class VitalSigns {
         this.diagnosis = diagnosis;
     }
 
-    public VitalSigns(String bodyTemperature, String pulseRate, String rateOfBreathing, String bloodPressure) {
+    public Diagnosis(String bodyTemperature, String pulseRate, String rateOfBreathing, String bloodPressure) {
         this.bodyTemperature = bodyTemperature;
         this.pulseRate = pulseRate;
         this.rateOfBreathing = rateOfBreathing;

@@ -4,6 +4,7 @@ import controller.Admin.AdminDir;
 import model.Doctor;
 import view.admin.MainView;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,7 +17,7 @@ public class main {
         HashMap<String,ArrayList<String>> ComToPatients = new HashMap<>();
         ArrayList<String>  patients = new ArrayList<>();
         //<hospitalName, DoctorList>
-        HashMap<String, List<String>> hospitals = new HashMap<>();
+        HashMap<String, ArrayList<Doctor>> hospitals = new HashMap<>();
         //<communityName, hospitalName>
         HashMap<String,ArrayList<String>> communityDirectory = new HashMap<>();
         //<cityName,communityName>
@@ -27,10 +28,10 @@ public class main {
         testHospital.add("h3");
         communityDirectory.put("test",testHospital);
         communityDirectory.put("test2",testHospital);
-        ArrayList<String> testdoctor = new ArrayList<>();
-        testdoctor.add("d1");
-        testdoctor.add("d2");
-        testdoctor.add("d3");
+        ArrayList<Doctor> testdoctor = new ArrayList<>();
+        testdoctor.add(new Doctor("d1","h1"));
+        testdoctor.add(new Doctor("d2","h1"));
+        testdoctor.add(new Doctor("d3","h1"));
         hospitals.put("h1",testdoctor);
         hospitals.put("h2",testdoctor);
         hospitals.put("h3",testdoctor);

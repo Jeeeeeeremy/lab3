@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Doctor {
     String Name;
     String Hospital;
-    ArrayList<String> Diagnose;
+    ArrayList<Diagnosis> Diagnose;
 
     public Doctor() {
     }
@@ -23,9 +23,6 @@ public class Doctor {
         return Hospital;
     }
 
-    public ArrayList<String> getDiagnose() {
-        return Diagnose;
-    }
 
     public void setName(String name) {
         Name = name;
@@ -35,7 +32,11 @@ public class Doctor {
         Hospital = hospital;
     }
 
-    public void addDiagnose(String diagnose) {
+    public ArrayList<Diagnosis> getDiagnose() {
+        return Diagnose;
+    }
+
+    public void addDiagnose(Diagnosis diagnose) {
         Diagnose.add(diagnose);
     }
 }

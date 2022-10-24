@@ -6,12 +6,12 @@ public class Patient {
     String city;
     String community;
     String name;
-    ArrayList<VitalSigns> record;
+    ArrayList<Diagnosis> record;
 
     public Patient() {
     }
 
-    public Patient(String city, String community, String name, ArrayList<VitalSigns> record) {
+    public Patient(String city, String community, String name, ArrayList<Diagnosis> record) {
         this.city = city;
         this.community = community;
         this.name = name;
@@ -36,7 +36,7 @@ public class Patient {
         return name;
     }
 
-    public ArrayList<VitalSigns> getRecord() {
+    public ArrayList<Diagnosis> getRecord() {
         return record;
     }
 
@@ -52,7 +52,7 @@ public class Patient {
         this.name = name;
     }
 
-    public void addRecord(VitalSigns record) {
+    public void addRecord(Diagnosis record) {
         this.record.add(record);
     }
 }

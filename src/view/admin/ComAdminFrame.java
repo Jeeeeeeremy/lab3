@@ -7,7 +7,9 @@ package view.admin;
 import java.awt.event.*;
 import java.util.*;
 import controller.Admin.CommunityAdminImp;
+import model.Doctor;
 
+import javax.print.Doc;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.table.DefaultTableModel;
@@ -26,8 +28,8 @@ public class ComAdminFrame extends JFrame {
     CommunityAdminImp curAdmin;
     ArrayList<String> hospitals;
     ArrayList<String> patients;
-    HashMap<String, List<String>> doctors;
-    public ComAdminFrame(CommunityAdminImp curAdmin, ArrayList<String> hospitals, ArrayList<String> patients, HashMap<String, List<String>> doctors) {
+    HashMap<String, ArrayList<Doctor>> doctors;
+    public ComAdminFrame(CommunityAdminImp curAdmin, ArrayList<String> hospitals, ArrayList<String> patients, HashMap<String, ArrayList<Doctor>> doctors) {
         this.curAdmin = curAdmin;
         this.hospitals = hospitals;
         this.patients = patients;
@@ -47,11 +49,11 @@ public class ComAdminFrame extends JFrame {
         for (String hospital:
                 hospitals) {
             if (doctors.containsKey(hospital)){
-                for (String doctor:
+                for (Doctor doctor:
                         doctors.get(hospital)) {
                     data[index][0] = curAdmin.getCurCom();
                     data[index][1] = hospital;
-                    data[index][2] = doctor;
+                    data[index][2] = doctor.getName();
                     index++;
                 }
             }
@@ -92,8 +94,9 @@ public class ComAdminFrame extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         ResourceBundle bundle = ResourceBundle.getBundle("form");
         scrollPane1 = new JScrollPane();
-        //table1 = new JTable();
+        table1 = new JTable();
         seachDoctorList = new JButton();
+        button1 = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -107,18 +110,21 @@ public class ComAdminFrame extends JFrame {
         seachDoctorList.setText(bundle.getString("ComAdminFrame.seachDoctorList.text"));
         seachDoctorList.addActionListener(e -> seachDoctorList(e));
 
+        //---- button1 ----
+        button1.setText(bundle.getString("ComAdminFrame.button1.text"));
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addGap(207, 207, 207)
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(207, 207, 207)
-                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 664, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(468, 468, 468)
-                            .addComponent(seachDoctorList)))
+                            .addComponent(seachDoctorList)
+                            .addGap(40, 40, 40)
+                            .addComponent(button1))
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 664, GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(232, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
@@ -126,9 +132,11 @@ public class ComAdminFrame extends JFrame {
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(112, 112, 112)
                     .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
-                    .addGap(37, 37, 37)
-                    .addComponent(seachDoctorList)
-                    .addContainerGap(181, Short.MAX_VALUE))
+                    .addGap(44, 44, 44)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(seachDoctorList)
+                        .addComponent(button1))
+                    .addContainerGap(174, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -139,5 +147,6 @@ public class ComAdminFrame extends JFrame {
     private JScrollPane scrollPane1;
     private JTable table1;
     private JButton seachDoctorList;
+    private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
