@@ -6,6 +6,8 @@ package view.admin;
 
 import java.awt.event.*;
 import controller.Admin.AdminDir;
+import controller.Admin.AdminImp;
+import controller.Admin.CommunityAdminImp;
 
 import java.awt.*;
 import java.util.*;
@@ -20,20 +22,20 @@ import javax.swing.border.*;
 public class MainView extends JFrame {
     AdminDir adminDir;
     List<String> patientList;
-    ArrayList<String> doctors;
     HashMap<String, List<String>> hospitals;
     HashMap<String,ArrayList<String>> communityDirectory;
     HashMap<String, ArrayList<String>> cityDirectory;
-    public MainView(AdminDir adminDir,List<String> patientList, ArrayList<String> doctors,
+    HashMap<String, ArrayList<String>> ComToPatient;
+    public MainView(AdminDir adminDir,List<String> patientList,
                     HashMap<String, List<String>> hospitals,HashMap<String,ArrayList<String>> communityDirectory,
-                    HashMap<String, ArrayList<String>> cityDirectory) {
+                    HashMap<String, ArrayList<String>> cityDirectory,HashMap<String, ArrayList<String>> ComToPatient) {
         initComponents();
         this.adminDir = adminDir;
         this.patientList = patientList;
         this.communityDirectory = communityDirectory;
-        this.doctors = doctors;
         this.hospitals = hospitals;
         this.cityDirectory = cityDirectory;
+        this.ComToPatient = ComToPatient;
     }
     private boolean check(){
         if (password.getText().length()==0||
@@ -42,11 +44,11 @@ public class MainView extends JFrame {
         return true;
     }
     private boolean checkRegister(){
-        return adminDir.getAdmin().containsKey(login.getText())||adminDir.getCommunityAdmin().containsKey(login.getText());
+        return adminDir.getAdmins().containsKey(login.getText())||adminDir.getCommunityAdmins().containsKey(login.getText());
     }
 
     private boolean checkLogin(){
-        return adminDir.getAdmin().containsKey(login.getText())||adminDir.getCommunityAdmin().containsKey(login.getText());
+        return adminDir.getAdmins().containsKey(login.getText())||adminDir.getCommunityAdmins().containsKey(login.getText());
     }
 
     private void claer(){
@@ -70,14 +72,15 @@ public class MainView extends JFrame {
             return;
         }
         if (ComAdmin.isSelected()){
-            if (adminDir.getCommunityAdmin().get(login.getText()).equals(password.getText())){
-                //load community admin page
+            if (adminDir.getCommunityAdmins().get(login.getText()).getPassword().equals(password.getText())){
+                CommunityAdminImp curAdmin = adminDir.getCommunityAdmins().get(login.getText());
+                new ComAdminFrame(curAdmin,communityDirectory.get(curAdmin.getCurCom()),ComToPatient.get(curAdmin.getCurCom()),hospitals).setVisible(true);
             }else {
                 JOptionPane.showMessageDialog(new JDialog(), ":password wrong");
                 return;
             }
         }else {
-            if (adminDir.getAdmin().get(login.getText()).equals(password.getText())){
+            if (adminDir.getAdmins().get(login.getText()).equals(password.getText())){
                 //load resource admin page
             }else {
                 JOptionPane.showMessageDialog(new JDialog(), ":password wrong");
@@ -101,7 +104,8 @@ public class MainView extends JFrame {
             return;
         }
         if (ComAdmin.isSelected()){
-            adminDir.addCommunityAdmin(login.getText(),password.getText());
+            adminDir.addCommunityAdmin(login.getText(),password.getText(),community.getText());
+
             JOptionPane.showMessageDialog(new JDialog(), ":register successful");
             claer();
         }else {
@@ -123,6 +127,8 @@ public class MainView extends JFrame {
         label3 = new JLabel();
         loginButton = new JButton();
         registerButton = new JButton();
+        label4 = new JLabel();
+        community = new JTextField();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -150,6 +156,9 @@ public class MainView extends JFrame {
         registerButton.setText(bundle.getString("MainView.registerButton.text"));
         registerButton.addActionListener(e -> register(e));
 
+        //---- label4 ----
+        label4.setText(bundle.getString("MainView.label4.text"));
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
@@ -157,6 +166,11 @@ public class MainView extends JFrame {
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(192, 192, 192)
                     .addGroup(contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addComponent(label4)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(community, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 84, Short.MAX_VALUE))
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGroup(contentPaneLayout.createParallelGroup()
                                 .addComponent(label1)
@@ -198,11 +212,15 @@ public class MainView extends JFrame {
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(ResAdmin)
                         .addComponent(ComAdmin))
-                    .addGap(67, 67, 67)
+                    .addGap(18, 18, 18)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label4)
+                        .addComponent(community, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addGap(27, 27, 27)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(loginButton)
                         .addComponent(registerButton))
-                    .addContainerGap(118, Short.MAX_VALUE))
+                    .addContainerGap(110, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -224,5 +242,7 @@ public class MainView extends JFrame {
     private JLabel label3;
     private JButton loginButton;
     private JButton registerButton;
+    private JLabel label4;
+    private JTextField community;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

@@ -4,23 +4,27 @@ import java.util.HashMap;
 
 public class AdminDir {
     //<userName,passWord>
-    private HashMap<String,String> Admin = new HashMap<>();
-    private HashMap<String,String> CommunityAdmin = new HashMap<>();
+    private HashMap<String,AdminImp> Admin = new HashMap<>();
+    private HashMap<String,CommunityAdminImp> CommunityAdmin = new HashMap<>();
 
 
-    public HashMap<String, String> getAdmin() {
+    public HashMap<String, AdminImp> getAdmins() {
         return Admin;
     }
 
-    public HashMap<String, String> getCommunityAdmin() {
+    public HashMap<String, CommunityAdminImp> getCommunityAdmins() {
         return CommunityAdmin;
     }
 
-    public void addAdmin(String login, String password) {
-        Admin.put(login,password);
+    public AdminImp addAdmin(String login, String password) {
+        AdminImp temp = new AdminImp(login,password);
+        Admin.put(login,temp);
+        return temp;
     }
 
-    public void addCommunityAdmin(String login, String password) {
-        CommunityAdmin.put(login,password);
+    public CommunityAdminImp addCommunityAdmin(String login, String password,String community) {
+        CommunityAdminImp temp =new CommunityAdminImp(community,login,password);
+        CommunityAdmin.put(login,temp);
+        return temp;
     }
 }

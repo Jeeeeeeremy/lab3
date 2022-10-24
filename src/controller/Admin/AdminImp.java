@@ -6,6 +6,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class AdminImp implements Admin {
+    private String login;
+    private String password;
+
+    public AdminImp(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
 
     @Override
     public ArrayList<String> checkCommunityByCity(String city) {
