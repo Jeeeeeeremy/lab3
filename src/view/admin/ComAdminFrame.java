@@ -94,7 +94,7 @@ public class ComAdminFrame extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         ResourceBundle bundle = ResourceBundle.getBundle("form");
         scrollPane1 = new JScrollPane();
-        table1 = new JTable();
+        //table1 = new JTable();
         seachDoctorList = new JButton();
         button1 = new JButton();
 

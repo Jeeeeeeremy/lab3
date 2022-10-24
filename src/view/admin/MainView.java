@@ -6,7 +6,6 @@ package view.admin;
 
 import java.awt.event.*;
 import controller.Admin.AdminDir;
-import controller.Admin.AdminImp;
 import controller.Admin.CommunityAdminImp;
 import model.Doctor;
 
@@ -26,17 +25,17 @@ public class MainView extends JFrame {
     HashMap<String, ArrayList<Doctor>> hospitals;
     HashMap<String,ArrayList<String>> communityDirectory;
     HashMap<String, ArrayList<String>> cityDirectory;
-    HashMap<String, ArrayList<String>> ComToPatient;
+    HashMap<String,ArrayList<String>> ComToPatients;
     public MainView(AdminDir adminDir, List<String> patientList,
                     HashMap<String, ArrayList<Doctor>> hospitals, HashMap<String,ArrayList<String>> communityDirectory,
-                    HashMap<String, ArrayList<String>> cityDirectory, HashMap<String, ArrayList<String>> ComToPatient) {
+                    HashMap<String, ArrayList<String>> cityDirectory,HashMap<String,ArrayList<String>> ComToPatients) {
         initComponents();
         this.adminDir = adminDir;
         this.patientList = patientList;
         this.communityDirectory = communityDirectory;
         this.hospitals = hospitals;
         this.cityDirectory = cityDirectory;
-        this.ComToPatient = ComToPatient;
+        this.ComToPatients = ComToPatients;
     }
     private boolean check(){
         if (password.getText().length()==0||
@@ -72,12 +71,13 @@ public class MainView extends JFrame {
             return;
         }
         if (ComAdmin.isSelected()){
-            if (adminDir.getCommunityAdmins().get(login.getText()).getPassword().equals(password.getText())
-                    &&(adminDir.getCommunityAdmins().get(login.getText()).getCurCom().equals(community.getText()))){
+            if (adminDir.getCommunityAdmins().get(login.getText()).getPassword().equals(password.getText())){
+                new ComAdminFrame().setVisible(true);
+                //load community admin page
                 CommunityAdminImp curAdmin = adminDir.getCommunityAdmins().get(login.getText());
-                new ComAdminFrame(curAdmin,communityDirectory.get(curAdmin.getCurCom()),ComToPatient.get(curAdmin.getCurCom()),hospitals).setVisible(true);
+                new ComAdminFrame(curAdmin,communityDirectory.get(curAdmin.getCurCom()),ComToPatients.get(curAdmin.getCurCom()),hospitals).setVisible(true);
             }else {
-                JOptionPane.showMessageDialog(new JDialog(), ":information wrong");
+                JOptionPane.showMessageDialog(new JDialog(), ":password wrong");
                 return;
             }
         }else {
@@ -106,12 +106,11 @@ public class MainView extends JFrame {
         }
         if (ComAdmin.isSelected()){
             adminDir.addCommunityAdmin(login.getText(),password.getText(),community.getText());
-            JOptionPane.showMessageDialog(new JDialog(), "register successful");
+            JOptionPane.showMessageDialog(new JDialog(), ":register successful");
             claer();
-            return;
         }else {
             adminDir.addAdmin(login.getText(),password.getText());
-            JOptionPane.showMessageDialog(new JDialog(), "register successful");
+            JOptionPane.showMessageDialog(new JDialog(), ":register successful");
             claer();
         }
     }
