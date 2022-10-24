@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public class AdminDir {
     //<userName,passWord>
-    HashMap<String,String> Admin = new HashMap<>();
-    HashMap<String,String> CommunityAdmin = new HashMap<>();
+    private HashMap<String,String> Admin = new HashMap<>();
+    private HashMap<String,String> CommunityAdmin = new HashMap<>();
 
 
     public HashMap<String, String> getAdmin() {
