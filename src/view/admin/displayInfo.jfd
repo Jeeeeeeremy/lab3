@@ -7,12 +7,23 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:75:p, comp info_label:::p:785:p, space ::128:x}}"
-			"$verticalGroup": "par l {seq l {space :p:78:p, comp info_label:::p:513:p, space ::103:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:70:p, par l {comp view:::p::p, seq {comp scrollPane1:::p::p, space :p:37:p, comp infoLabel:::p:383:p}}, space ::44:x}}"
+			"$verticalGroup": "par l {seq {space :p:46:p, par l:::p {comp scrollPane1:::::x, comp infoLabel:::::x}, space :p:45:p, comp view:::p::p, space ::144:x}}"
 		} ) {
 			name: "this"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "view"
+				"text": new FormMessage( null, "displayInfo.view.text" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "view", true ) )
+			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "info_label"
+				name: "infoLabel"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
