@@ -1,0 +1,34 @@
+JFDML JFormDesigner: "8.0.0.0.194" Java: "17.0.4" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundleName": "form"
+	"i18n.keyPrefix": "ComAdminFrame"
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:207:p, par l {seq {comp seachDoctorList:::p::p, space :p:40:p, comp button1:::p::p}, comp scrollPane1:::p:664:p}, space ::232:x}}"
+			"$verticalGroup": "par l {seq l {space :p:112:p, comp scrollPane1:::p:274:p, space :p:44:p, par b {comp seachDoctorList::b:p::p, comp button1::b:p::p}, space ::174:x}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "seachDoctorList"
+				"text": new FormMessage( null, "ComAdminFrame.seachDoctorList.text" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seachDoctorList", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": new FormMessage( null, "ComAdminFrame.button1.text" )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1105, 665 )
+		} )
+	}
+}
