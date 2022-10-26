@@ -1,6 +1,5 @@
 package model;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 
 public class Patient {
@@ -11,8 +10,7 @@ public class Patient {
     String password;
     ArrayList<Encounter> encounterHistory;
 
-    public Patient() {
-    }
+    public Patient() {}
 
     public Patient(String city, String community, String name, ArrayList<Encounter> encounterHistory) {
         this.city = city;
@@ -75,7 +73,7 @@ public class Patient {
         this.encounterHistory = encounterHistory;
     }
 
-    public ArrayList<Hospital> searchHospital(){
+    public ArrayList<String> searchHospital(){
         return null;
     }
 
@@ -84,7 +82,7 @@ public class Patient {
     }
 
     public void doctorAppointment(Doctor doctor){
-
+        doctor.getPatientWaitingList().add(this);
     }
 
 

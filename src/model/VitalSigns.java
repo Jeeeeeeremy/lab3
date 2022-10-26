@@ -6,6 +6,15 @@ public class VitalSigns {
     private String rateOfBreathing;
     private String bloodPressure;
 
+    public VitalSigns() {}
+
+    public VitalSigns(String bodyTemperature, String pulseRate, String rateOfBreathing, String bloodPressure) {
+        this.bodyTemperature = bodyTemperature;
+        this.pulseRate = pulseRate;
+        this.rateOfBreathing = rateOfBreathing;
+        this.bloodPressure = bloodPressure;
+    }
+
     public String getBodyTemperature() {
         return bodyTemperature;
     }
