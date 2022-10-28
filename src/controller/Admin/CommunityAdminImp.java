@@ -22,6 +22,10 @@ public class CommunityAdminImp implements Admin {
         this.password = password;
     }
 
+    public CommunityAdminImp(String curCom) {
+        this.curCom = curCom;
+    }
+
     public void setCurCom(String curCom) {
         this.curCom = curCom;
     }

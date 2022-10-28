@@ -7,8 +7,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:70:p, par l {comp view:::p::p, seq {comp scrollPane1:::p::p, space :p:37:p, comp infoLabel:::p:383:p}}, space ::44:x}}"
-			"$verticalGroup": "par l {seq {space :p:46:p, par l:::p {comp scrollPane1:::::x, comp infoLabel:::::x}, space :p:45:p, comp view:::p::p, space ::144:x}}"
+			"$horizontalGroup": "par l {seq l {par l {seq {space :p:70:p, par l {comp scrollPane1::l:p::p, seq l {comp view:::p::p, space :p:77:p, par l {comp label4:::p::p, seq l {comp button1:::p::p, space :::p, comp deletIndex:::p:79:p}}}}}, seq l {space :p:64:p, par l {seq l {comp button2:::p::p, space :p:24:p, comp updateIndex:::p:75:p, space :::p, comp label1:::p::p}, par t:l::p {seq l {comp label3:::p::p, space ::37:x, comp temp:::p:139:p}, seq l {comp label2:::p::p, space :::x, comp pressure:::p:139:p}, seq t {par l {comp label5::l:p::p, comp label6::l:p::p}, space :::x, par l:::p {comp pulse::::139:x, comp breath::::139:x}}}, seq l {comp label7:::p::p, space :p:54:p, comp diagnose:::p:327:p}}}}, space :p:116:p, comp infoLabel:::p:723:p, space ::40:x}}"
+			"$verticalGroup": "par l {seq l {space :p:46:p, par l {comp infoLabel:::::x, seq {comp scrollPane1:::p::p, space :p:45:p, par b {comp view::b:p::p, comp button1::b:p::p, comp deletIndex::b:p::p}, space :::p, par t {seq {comp label4:::p::p, space :p:22:p, par b {comp button2::b:p::p, comp label1::b:p::p, comp updateIndex::b:p::p}, space s:::p, par b {comp label2::b:p::p, comp pressure::b:p::p}, space :p:14:p, par b {comp label3::b:p::p, comp temp::b:p::p}, space u:::p, comp pulse:::p::p}, comp label5:::p::p}, space :p:13:p, par b {comp label6::b:p::p, comp breath::b:p::p}, space s:::p, par l {seq {comp label7:::p::p, space :p:48:p}, comp diagnose::t:p:82:p}}}, space ::8:x}}"
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -25,9 +25,68 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "infoLabel"
 			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": new FormMessage( null, "displayInfo.button1.text" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "delete", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": new FormMessage( null, "displayInfo.button2.text" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "modify", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "pressure"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "deletIndex"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "updateIndex"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": new FormMessage( null, "displayInfo.label1.text" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": new FormMessage( null, "displayInfo.label2.text" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": new FormMessage( null, "displayInfo.label3.text" )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "temp"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": new FormMessage( null, "displayInfo.label4.text" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": new FormMessage( null, "displayInfo.label5.text" )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "pulse"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": new FormMessage( null, "displayInfo.label6.text" )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "breath"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": new FormMessage( null, "displayInfo.label7.text" )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "diagnose"
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 990, 725 )
+			"size": new java.awt.Dimension( 1405, 940 )
 		} )
 	}
 }

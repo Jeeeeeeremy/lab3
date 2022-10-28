@@ -7,8 +7,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:26:p, par l {comp button6:1::p::p, seq {comp label2:::p::p, space :::p, comp patientName:::p:98:p}}, space :p:36:p, par l {comp button4:::p::p, comp scrollPane1:::p:664:p, seq {par l {comp button3::l:p:153:p, seq l {comp label1:::p::p, space :::p, comp doctorName:::p:98:p}}, par l {seq {space :p:63:p, par l {comp button1:1::p::p, seq {space :6:6:p, comp label3:2::p::p, space :6:6:p, comp doctorUpdateName:::p:98:p}}}, seq t {space :::p, comp label4:2::p::p, space :::p, comp doctorUpdateHospital:::p:98:p}}, space :p:282:p, par l {comp button5:1::p::p, comp button2:1::p::p, comp button7:1::p::p}}}, space ::46:x}}"
-			"$verticalGroup": "par l {seq l {space :p:49:p, comp button4:::p::p, space :p:33:p, comp scrollPane1:::p:274:p, par l {seq l {space :p:44:p, comp button2:::p::p, space s:::p, par b {comp button5::b:p::p, comp label2::b:p::p, comp patientName::b:p::p, comp label1::b:p::p, comp doctorName::b:p::p}, space u:::p, comp button7:::p::p}, seq l {space :p:31:p, par b {comp button6::b:p::p, comp button3::b:p::p, comp button1::b:p::p}, space :p:3:p, par l {seq l {space :7:7:p, comp label3:::p::p}, comp doctorUpdateName:::p::p}, space :p:26:p, par b {comp doctorUpdateHospital::b:p::p, comp label4::b:p::p}}}, space ::324:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:26:p, par l {seq {par l {comp button6:1::p::p, seq {comp label2:::p::p, space :::p, comp patientName:::p:98:p}}, space :p:36:p, par l {comp button4:::p::p, comp scrollPane1:::p:664:p, seq {par l {comp button3::l:p:153:p, seq l {comp label1:::p::p, space :::p, comp doctorName:::p:98:p}}, par l {seq {space :p:69:p, comp label3:2::p::p, space :6:6:p, comp doctorUpdateName:::p:98:p}, seq t {space :p:63:p, par l {seq t {comp label4:2::p::p, space :::p, comp doctorUpdateHospital:::p:98:p}, comp button1::t:p:162:p}}}, space :p:98:p, comp button5:1::p::p, space :p:31:p, comp button2:1::p::p}}}, par t:l::p {seq l {comp label6:::p::p, space u:::p, comp newHospital::::166:x}, comp button7::l:::x}, seq l {comp label5:::p::p, space :p:20:p, comp firstDoctor:::p:168:p}}, space ::102:x}}"
+			"$verticalGroup": "par l {seq l {space :p:49:p, comp button4:::p::p, space :p:33:p, comp scrollPane1:::p:274:p, par l {seq l {space :p:92:p, par b {comp label2::b:p::p, comp patientName::b:p::p, comp label1::b:p::p, comp doctorName::b:p::p}}, seq l {space :p:31:p, par b {comp button6::b:p::p, comp button3::b:p::p, comp button1::b:p::p, comp button5::b:p::p, comp button2::b:p::p}, space :p:3:p, par l {seq l {space :7:7:p, comp label3:::p::p}, comp doctorUpdateName:::p::p}, space :p:26:p, par b {comp doctorUpdateHospital::b:p::p, comp label4::b:p::p}}}, space :p:60:p, comp button7:::p::p, space s:::p, par b {comp label6::b:p::p, comp newHospital::b:p::p}, space :p:6:p, par b {comp label5::b:p::p, comp firstDoctor::b:p::p}, space ::164:x}}"
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -40,15 +40,12 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button5"
 				"text": new FormMessage( null, "ComAdminFrame.button5.text" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "deleteHospital", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button6"
 				"text": new FormMessage( null, "ComAdminFrame.button6.text" )
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addPatient", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button7"
-				"text": new FormMessage( null, "ComAdminFrame.button7.text" )
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "doctorName"
@@ -77,6 +74,25 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "doctorUpdateHospital"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button7"
+				"text": new FormMessage( null, "ComAdminFrame.button7.text" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addHospital", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": new FormMessage( null, "ComAdminFrame.label5.text" )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "firstDoctor"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": new FormMessage( null, "ComAdminFrame.label6.text" )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "newHospital"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 25, 5 )

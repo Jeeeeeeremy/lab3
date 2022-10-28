@@ -6,6 +6,7 @@ package view.admin;
 
 import java.awt.event.*;
 import controller.Admin.AdminDir;
+import controller.Admin.AdminImp;
 import controller.Admin.CommunityAdminImp;
 import model.Doctor;
 import model.Patient;
@@ -81,8 +82,10 @@ public class MainView extends JFrame {
                 return;
             }
         }else {
-            if (adminDir.getAdmins().get(login.getText()).equals(password.getText())){
+            if (adminDir.getAdmins().get(login.getText()).getPassword().equals(password.getText())){
                 //load resource admin page
+                AdminImp curAdmin = adminDir.getAdmins().get(login.getText());
+                new ResAdminView(curAdmin,communityDirectory,ComToPatients,hospitals).setVisible(true);
             }else {
                 JOptionPane.showMessageDialog(new JDialog(), ":password wrong");
                 return;

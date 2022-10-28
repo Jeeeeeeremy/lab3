@@ -49,6 +49,7 @@ public class main {
         ArrayList<Patient> ps = new ArrayList<>();
         Patient pp = new Patient("c1","c2","p1");
         pp.addRecord(new Diagnosis("1","2","3","4","5"));
+        pp.addRecord(new Diagnosis("1","2","3","4","5"));
         ps.add(pp);
         ComToPatients.put("test",ps);
         //initialize all the three login UIs
