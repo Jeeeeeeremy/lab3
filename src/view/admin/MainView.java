@@ -73,21 +73,21 @@ public class MainView extends JFrame {
             return;
         }
         if (ComAdmin.isSelected()){
-            if (adminDir.getCommunityAdmins().get(login.getText()).getPassword().equals(password.getText())){
+            if (adminDir.getCommunityAdmins().containsKey(login.getText())&&adminDir.getCommunityAdmins().get(login.getText()).getPassword().equals(password.getText())){
                 //load community admin page
                 CommunityAdminImp curAdmin = adminDir.getCommunityAdmins().get(login.getText());
                 new ComAdminFrame(curAdmin,communityDirectory.get(curAdmin.getCurCom()),ComToPatients.get(curAdmin.getCurCom()),hospitals).setVisible(true);
             }else {
-                JOptionPane.showMessageDialog(new JDialog(), ":password wrong");
+                JOptionPane.showMessageDialog(new JDialog(), ":password wrong or admin not existed");
                 return;
             }
         }else {
-            if (adminDir.getAdmins().get(login.getText()).getPassword().equals(password.getText())){
+            if (adminDir.getAdmins().containsKey(login.getText())&&adminDir.getAdmins().get(login.getText()).getPassword().equals(password.getText())){
                 //load resource admin page
                 AdminImp curAdmin = adminDir.getAdmins().get(login.getText());
-                new ResAdminView(curAdmin,communityDirectory,ComToPatients,hospitals).setVisible(true);
+                new ResAdminView(curAdmin,communityDirectory,ComToPatients,hospitals,adminDir).setVisible(true);
             }else {
-                JOptionPane.showMessageDialog(new JDialog(), ":password wrong");
+                JOptionPane.showMessageDialog(new JDialog(), ":password wrong or admin not existed");
                 return;
             }
         }
