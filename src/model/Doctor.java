@@ -1,42 +1,72 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Doctor {
-    String Name;
-    String Hospital;
-    ArrayList<Diagnosis> Diagnose;
+    private String name;
+    private String hospital;
+    private String account;
+    private String password;
+    private ArrayList<Patient> patientWaitingList;
 
     public Doctor() {
     }
 
     public Doctor(String name, String hospital) {
-        Name = name;
-        Hospital = hospital;
+        name = name;
+        hospital = hospital;
     }
 
     public String getName() {
-        return Name;
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getHospital() {
-        return Hospital;
-    }
-
-
-    public void setName(String name) {
-        Name = name;
+        return hospital;
     }
 
     public void setHospital(String hospital) {
-        Hospital = hospital;
+        this.hospital = hospital;
     }
 
-    public ArrayList<Diagnosis> getDiagnose() {
-        return Diagnose;
+    public String getAccount() {
+        return account;
     }
 
-    public void addDiagnose(Diagnosis diagnose) {
-        Diagnose.add(diagnose);
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public ArrayList<Patient> getPatientWaitingList() {
+        return patientWaitingList;
+    }
+
+    public void setPatientWaitingList(ArrayList<Patient> patientWaitingList) {
+        this.patientWaitingList = patientWaitingList;
+    }
+
+    public List<Patient>  searchWaitingPatient(){
+        return null;
+    }
+
+    public void setVitalSigns(Encounter encounter, VitalSigns vitalSigns){
+        encounter.setVitalSigns(vitalSigns);
+    }
+
+    public void diagnose(Encounter encounter, String diagnose){
+        encounter.setDiagnose(diagnose);
     }
 }
