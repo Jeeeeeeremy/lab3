@@ -8,6 +8,7 @@ import java.awt.event.*;
 import controller.Admin.AdminDir;
 import controller.Admin.CommunityAdminImp;
 import model.Doctor;
+import model.Patient;
 
 import java.awt.*;
 import java.util.*;
@@ -21,12 +22,12 @@ import javax.swing.border.*;
  */
 public class MainView extends JFrame {
     AdminDir adminDir;
-    List<String> patientList;
+    List<Patient> patientList;
     HashMap<String, ArrayList<Doctor>> hospitals;
     HashMap<String,ArrayList<String>> communityDirectory;
     HashMap<String, ArrayList<String>> cityDirectory;
     HashMap<String,ArrayList<String>> ComToPatients;
-    public MainView(AdminDir adminDir, List<String> patientList,
+    public MainView(AdminDir adminDir, List<Patient> patientList,
                     HashMap<String, ArrayList<Doctor>> hospitals, HashMap<String,ArrayList<String>> communityDirectory,
                     HashMap<String, ArrayList<String>> cityDirectory,HashMap<String,ArrayList<String>> ComToPatients) {
         initComponents();

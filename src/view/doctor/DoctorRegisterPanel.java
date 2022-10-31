@@ -154,6 +154,7 @@ public class DoctorRegisterPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"The input cannot be empty!!!");
             return;
         }
+        Doctor doctor = new Doctor(nameText, hospitalText, accountText, passwordText);
         //city exist
         if(cityDirectory.keySet().contains(cityText)){
             //community exist
@@ -161,11 +162,11 @@ public class DoctorRegisterPanel extends javax.swing.JPanel {
                 //hospital exsit
                 if(communityDirectory.get(communityText).contains(hospitalText)){
                     //add doctor
-                    hospitals.get(hospitalText).add(new Doctor(nameText, hospitalText, accountText, passwordText));
+                    hospitals.get(hospitalText).add(doctor);
                 }else {
                     communityDirectory.get(communityText).add(hospitalText);
                     ArrayList<Doctor> doctors = new ArrayList<>();
-                    doctors.add(new Doctor(nameText, hospitalText, accountText, passwordText));
+                    hospitals.get(hospitalText).add(doctor);
                     this.hospitals.put(hospitalText,doctors);
                 }
             }else {
@@ -174,7 +175,7 @@ public class DoctorRegisterPanel extends javax.swing.JPanel {
                 hospitals.add(hospitalText);
                 communityDirectory.put(communityText,hospitals);
                 ArrayList<Doctor> doctors = new ArrayList<>();
-                doctors.add(new Doctor(nameText, hospitalText, accountText, passwordText));
+                doctors.add(doctor);
                 this.hospitals.put(hospitalText,doctors);
             }
         }else {
@@ -185,10 +186,10 @@ public class DoctorRegisterPanel extends javax.swing.JPanel {
             hospitals.add(hospitalText);
             communityDirectory.put(communityText,hospitals);
             ArrayList<Doctor> doctors = new ArrayList<>();
-            doctors.add(new Doctor(nameText, hospitalText, accountText, passwordText));
+            doctors.add(doctor);
             this.hospitals.put(hospitalText,doctors);
         }
-        loginFram.getjSplitPane1().setRightComponent(new DoctorPanel(hospitals, communityDirectory, cityDirectory, new Doctor(nameText, hospitalText, accountText, passwordText)));
+        loginFram.getjSplitPane1().setRightComponent(new DoctorPanel(hospitals, communityDirectory, cityDirectory, doctor));
     }
 
     private Boolean isEmpty(String s){

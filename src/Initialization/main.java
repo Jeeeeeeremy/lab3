@@ -8,7 +8,6 @@ import model.VitalSigns;
 import view.admin.MainView;
 import view.doctor.LoginFram;
 
-import javax.print.Doc;
 import java.util.*;
 
 public class main {
@@ -16,7 +15,7 @@ public class main {
 
     public static void main(String[] args) {
         HashMap<String,ArrayList<String>> ComToPatients = new HashMap<>();
-        ArrayList<String>  patients = new ArrayList<>();
+        ArrayList<Patient>  patients = new ArrayList<>();
         //<hospitalName, DoctorList>
         HashMap<String, ArrayList<Doctor>> hospitals = new HashMap<>();
         //<communityName, hospitalName>
@@ -43,9 +42,15 @@ public class main {
         Encounter encounter3 = new Encounter(vitalSigns3, "");
         LinkedList<Encounter> encounterHistroy3 = new LinkedList<>();
         encounterHistroy1.add(encounter3);
-        patientArrayList.add(new Patient("city1", "community1", "p1", encounterHistroy1, "p1", "p1"));
-        patientArrayList.add(new Patient("city1", "community1", "p2", encounterHistroy2, "p2", "p2"));
-        patientArrayList.add(new Patient("city2", "community2", "p3", encounterHistroy3, "p3", "p3"));
+        Patient patient1 = new Patient("city1", "community1", "p1", encounterHistroy1, "p1", "p1");
+        Patient patient2 = new Patient("city1", "community1", "p2", encounterHistroy2, "p2", "p2");
+        Patient patient3 = new Patient("city2", "community2", "p3", encounterHistroy3, "p3", "p3");
+        patientArrayList.add(patient1);
+        patientArrayList.add(patient2);
+        patientArrayList.add(patient3);
+        patients.add(patient1);
+        patients.add(patient2);
+        patients.add(patient3);
         testdoctor.add(new Doctor("d1","h1","d1","d1", patientArrayList));
         testdoctor.add(new Doctor("d2","h1","d2","d2", patientArrayList));
         testdoctor.add(new Doctor("d3","h1","d3","d3", patientArrayList));

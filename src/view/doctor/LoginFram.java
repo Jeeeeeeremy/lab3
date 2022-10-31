@@ -1,6 +1,9 @@
 package view.doctor;
 
 import model.Doctor;
+import model.Patient;
+import view.patient.PatientPanel;
+import view.patient.PatientRegisterPanel;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -13,7 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Gulinigeer
  */
 public class LoginFram extends javax.swing.JFrame {
-    private List<String> patients;
+    private List<Patient> patients;
     private HashMap<String, ArrayList<Doctor>> hospitals;
     private HashMap<String,ArrayList<String>> communityDirectory;
     private HashMap<String, ArrayList<String>> cityDirectory;
@@ -25,7 +28,7 @@ public class LoginFram extends javax.swing.JFrame {
         initComponents();
     }
 
-    public LoginFram(List<String> patients, HashMap<String, ArrayList<Doctor>> hospitals, HashMap<String,ArrayList<String>> communityDirectory, HashMap<String, ArrayList<String>> cityDirectory, HashMap<String,ArrayList<String>> ComToPatients) {
+    public LoginFram(List<Patient> patients, HashMap<String, ArrayList<Doctor>> hospitals, HashMap<String,ArrayList<String>> communityDirectory, HashMap<String, ArrayList<String>> cityDirectory, HashMap<String,ArrayList<String>> ComToPatients) {
         this.patients = patients;
         this.hospitals = hospitals;
         this.communityDirectory = communityDirectory;
@@ -168,7 +171,11 @@ public class LoginFram extends javax.swing.JFrame {
         AtomicInteger login = new AtomicInteger(-1);
         switch (userType){
             case "Patient":
-//                this.jSplitPane1.setRightComponent(new PatientPanel(patientList, ComToPatients, cityDirectory));
+                for (Patient patient : patients){
+                    if(accountTextText.equals(patient.getAccount()) && passwordTextText.equals(patient.getPassword())){
+                        this.jSplitPane1.setRightComponent(new PatientPanel(patient, hospitals, communityDirectory, cityDirectory));
+                    }
+                }
             case "Doctor":
                 hospitals.keySet().forEach(one->{
                     for(Doctor doctor : hospitals.get(one)){
@@ -188,7 +195,7 @@ public class LoginFram extends javax.swing.JFrame {
         String userType = userTypeItem.getSelectedItem().toString();
         switch (userType){
             case "Patient":
-//                this.jSplitPane1.setRightComponent(new PatientRegisterPanel(patientList, ComToPatients, cityDirectory));
+                this.jSplitPane1.setRightComponent(new PatientRegisterPanel(patients, ComToPatients, cityDirectory, hospitals, communityDirectory, this));
             case "Doctor":
                 this.jSplitPane1.setRightComponent(new DoctorRegisterPanel(hospitals, communityDirectory, cityDirectory, this));
         }
