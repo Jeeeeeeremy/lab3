@@ -14,8 +14,8 @@ public class Doctor {
     }
 
     public Doctor(String name, String hospital) {
-        name = name;
-        hospital = hospital;
+        this.name = name;
+        this.hospital = hospital;
     }
 
     public String getName() {
