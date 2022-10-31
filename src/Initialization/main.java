@@ -1,16 +1,12 @@
 package Initialization;
 
 import controller.Admin.AdminDir;
-import model.Diagnosis;
 import model.Doctor;
 import model.Patient;
 import view.admin.MainView;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 
 public class main {
 
@@ -48,8 +44,6 @@ public class main {
         //patients.add(new Patient("c1","c2","p1"));
         ArrayList<Patient> ps = new ArrayList<>();
         Patient pp = new Patient("c1","c2","p1");
-        pp.addRecord(new Diagnosis("1","2","3","4","5"));
-        pp.addRecord(new Diagnosis("1","2","3","4","5"));
         ps.add(pp);
         ComToPatients.put("test",ps);
         //initialize all the three login UIs
