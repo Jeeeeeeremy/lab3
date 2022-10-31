@@ -39,7 +39,7 @@ public class PatientPanel extends javax.swing.JPanel {
         initComponents();
         ArrayList<Doctor> doctorArrayList = new ArrayList<>();
         hospitals.keySet().forEach(one->{
-            doctorArrayList.addAll(hospitals.get(one));
+            doctorArrayList.addAll(this.hospitals.get(one));
         });
         displayTable(doctorArrayList);
     }

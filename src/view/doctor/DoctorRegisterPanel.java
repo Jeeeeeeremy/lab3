@@ -14,7 +14,7 @@ public class DoctorRegisterPanel extends javax.swing.JPanel {
     private HashMap<String, ArrayList<Doctor>> hospitals;
     private HashMap<String,ArrayList<String>> communityDirectory;
     private HashMap<String, ArrayList<String>> cityDirectory;
-    private LoginFram loginFram;
+    private DoctorLoginFram doctorLoginFram;
     /**
      * Creates new form DoctorRegisterPanel
      */
@@ -29,11 +29,11 @@ public class DoctorRegisterPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    public DoctorRegisterPanel(HashMap<String, ArrayList<Doctor>> hospitals, HashMap<String,ArrayList<String>> communityDirectory, HashMap<String, ArrayList<String>> cityDirectory, LoginFram loginFram){
+    public DoctorRegisterPanel(HashMap<String, ArrayList<Doctor>> hospitals, HashMap<String,ArrayList<String>> communityDirectory, HashMap<String, ArrayList<String>> cityDirectory, DoctorLoginFram doctorLoginFram){
         this.hospitals = hospitals;
         this.communityDirectory = communityDirectory;
         this.cityDirectory = cityDirectory;
-        this.loginFram = loginFram;
+        this.doctorLoginFram = doctorLoginFram;
         initComponents();
     }
 
@@ -189,7 +189,7 @@ public class DoctorRegisterPanel extends javax.swing.JPanel {
             doctors.add(doctor);
             this.hospitals.put(hospitalText,doctors);
         }
-        loginFram.getjSplitPane1().setRightComponent(new DoctorPanel(hospitals, communityDirectory, cityDirectory, doctor));
+        doctorLoginFram.getjSplitPane1().setRightComponent(new DoctorPanel(hospitals, communityDirectory, cityDirectory, doctor));
     }
 
     private Boolean isEmpty(String s){

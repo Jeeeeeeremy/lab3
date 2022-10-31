@@ -2,7 +2,7 @@ package view.patient;
 
 import model.Doctor;
 import model.Patient;
-import view.doctor.LoginFram;
+import view.doctor.DoctorLoginFram;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class PatientRegisterPanel extends javax.swing.JPanel {
     HashMap<String,ArrayList<String>> communityDirectory;
     private HashMap<String, ArrayList<String>> cityDirectory;
     private HashMap<String,ArrayList<String>> ComToPatients;
-    private LoginFram loginFram;
+    private PatientLoginFram patientLoginFram;
 
     /**
      * Creates new form RegisterPanel
@@ -28,13 +28,13 @@ public class PatientRegisterPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    public PatientRegisterPanel(List<Patient> patientList, HashMap<String,ArrayList<String>> ComToPatients, HashMap<String, ArrayList<String>> cityDirectory, HashMap<String, ArrayList<Doctor>> hospitals, HashMap<String,ArrayList<String>> communityDirectory, LoginFram loginFram){
+    public PatientRegisterPanel(List<Patient> patientList, HashMap<String,ArrayList<String>> ComToPatients, HashMap<String, ArrayList<String>> cityDirectory, HashMap<String, ArrayList<Doctor>> hospitals, HashMap<String,ArrayList<String>> communityDirectory, PatientLoginFram patientLoginFram){
         this.patientList = patientList;
         this.ComToPatients = ComToPatients;
         this.cityDirectory = cityDirectory;
         this.communityDirectory = communityDirectory;
         this.hospitals = hospitals;
-        this.loginFram = loginFram;
+        this.patientLoginFram = patientLoginFram;
         initComponents();
     }
     /**
@@ -165,7 +165,7 @@ public class PatientRegisterPanel extends javax.swing.JPanel {
             ComToPatients.put(communityText,patientList);
             this.patientList.add(patient);
         }
-        loginFram.getjSplitPane1().setRightComponent(new PatientPanel(patient, hospitals, communityDirectory, cityDirectory));
+        patientLoginFram.getjSplitPane1().setRightComponent(new PatientPanel(patient, hospitals, communityDirectory, cityDirectory));
     }
 
 

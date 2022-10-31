@@ -1,9 +1,7 @@
-package view.doctor;
+package view.patient;
 
 import model.Doctor;
 import model.Patient;
-import view.patient.PatientPanel;
-import view.patient.PatientRegisterPanel;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -13,9 +11,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
- * @author Gulinigeer
+ * @author qiaotong
  */
-public class LoginFram extends javax.swing.JFrame {
+public class PatientLoginFram  extends javax.swing.JFrame {
     private List<Patient> patients;
     private HashMap<String, ArrayList<Doctor>> hospitals;
     private HashMap<String,ArrayList<String>> communityDirectory;
@@ -24,11 +22,11 @@ public class LoginFram extends javax.swing.JFrame {
     /**
      * Creates new form LoginJFram
      */
-    public LoginFram() {
+    public PatientLoginFram() {
         initComponents();
     }
 
-    public LoginFram(List<Patient> patients, HashMap<String, ArrayList<Doctor>> hospitals, HashMap<String,ArrayList<String>> communityDirectory, HashMap<String, ArrayList<String>> cityDirectory, HashMap<String,ArrayList<String>> ComToPatients) {
+    public PatientLoginFram(List<Patient> patients, HashMap<String, ArrayList<Doctor>> hospitals, HashMap<String,ArrayList<String>> communityDirectory, HashMap<String, ArrayList<String>> cityDirectory, HashMap<String,ArrayList<String>> ComToPatients) {
         this.patients = patients;
         this.hospitals = hospitals;
         this.communityDirectory = communityDirectory;
@@ -86,7 +84,7 @@ public class LoginFram extends javax.swing.JFrame {
             }
         });
 
-        userTypeItem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient", "Doctor" }));
+        userTypeItem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Patient"}));
 
         registerButton.setText("Register");
         registerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +156,6 @@ public class LoginFram extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
-
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         String accountTextText = accountText.getText();
@@ -167,23 +164,12 @@ public class LoginFram extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"The input cannot be empty!!!");
             return;
         }
-        String userType = userTypeItem.getSelectedItem().toString();
         AtomicInteger login = new AtomicInteger(-1);
-        switch (userType){
-            case "Patient":
-                for (Patient patient : patients){
-                    if(accountTextText.equals(patient.getAccount()) && passwordTextText.equals(patient.getPassword())){
-                        this.jSplitPane1.setRightComponent(new PatientPanel(patient, hospitals, communityDirectory, cityDirectory));
-                    }
-                }
-            case "Doctor":
-                hospitals.keySet().forEach(one->{
-                    for(Doctor doctor : hospitals.get(one)){
-                        if(doctor.getAccount().equals(accountTextText) && doctor.getPassword().equals(passwordTextText)){
-                            this.jSplitPane1.setRightComponent(new DoctorPanel(hospitals, communityDirectory, cityDirectory,doctor));
-                            login.set(1);
-                    }}
-                });
+        for (Patient patient : patients){
+            if(accountTextText.equals(patient.getAccount()) && passwordTextText.equals(patient.getPassword())){
+                this.jSplitPane1.setRightComponent(new PatientPanel(patient, hospitals, communityDirectory, cityDirectory));
+                login.set(1);
+            }
         }
         if(login.get() == -1){
             JOptionPane.showMessageDialog(this,"User does not exist!!!");
@@ -192,14 +178,10 @@ public class LoginFram extends javax.swing.JFrame {
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        String userType = userTypeItem.getSelectedItem().toString();
-        switch (userType){
-            case "Patient":
-                this.jSplitPane1.setRightComponent(new PatientRegisterPanel(patients, ComToPatients, cityDirectory, hospitals, communityDirectory, this));
-            case "Doctor":
-                this.jSplitPane1.setRightComponent(new DoctorRegisterPanel(hospitals, communityDirectory, cityDirectory, this));
-        }
+        this.jSplitPane1.setRightComponent(new PatientRegisterPanel(patients, ComToPatients, cityDirectory, hospitals, communityDirectory, this));
+
     }
+
 
     // Variables declaration - do not modify
     private javax.swing.JTextField accountText;
