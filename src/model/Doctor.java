@@ -13,9 +13,19 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(String name, String hospital) {
-        name = name;
-        hospital = hospital;
+    public Doctor(String name, String hospital, String account, String password) {
+        this.name = name;
+        this.hospital = hospital;
+        this.account = account;
+        this.password = password;
+    }
+
+    public Doctor(String name, String hospital, String account, String password, ArrayList<Patient> patients) {
+        this.name = name;
+        this.hospital = hospital;
+        this.account = account;
+        this.password = password;
+        this.patientWaitingList = patients;
     }
 
     public String getName() {
