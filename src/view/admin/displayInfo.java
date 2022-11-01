@@ -18,22 +18,27 @@ import java.util.regex.Pattern;
  * @author unknown
  */
 public class displayInfo extends JFrame {
-    ArrayList<Patient> patients;
+    //ArrayList<String> patients;
     private String[] colunms;
     private String[][] data;
+    private String curCom;
     Pattern digitp = Pattern.compile("^[-\\+]?[\\d]*$");
-    public displayInfo(ArrayList<Patient> patients) {
-        this.patients =patients ;
+    List<Patient> patientList;
+    public displayInfo( String curCom, List<Patient> patientList) {
+//        this.patients =patients;
+        this.curCom = curCom;
+        this.patientList = patientList;
         initComponents();
         preparetable();
     }
+
     private void preparetable(){
         colunms = new String[]{"Community","patient name"};
-        data = new String[patients.size()][colunms.length];
+        data = new String[patientList.size()][colunms.length];
         int index = 0;
         for (Patient patient:
-                patients) {
-                    data[index][0] = patient.getCommunity();
+                patientList) {
+                    data[index][0] = curCom;
                     data[index][1] = patient.getName();
                     index++;
         }
@@ -54,7 +59,7 @@ public class displayInfo extends JFrame {
             JOptionPane.showMessageDialog(new JDialog(), ":please select one row to delete");
             return;
         }
-        patients.remove(selected_row);
+        patientList.remove(selected_row);
         preparetable();
     }
     private void initComponents() {

@@ -30,13 +30,15 @@ public class ComAdminFrame extends JFrame {
     private String[][] data;
     CommunityAdminImp curAdmin;
     ArrayList<String> hospitals;
-    ArrayList<Patient> patients;
+    ArrayList<String> patients;
     HashMap<String, ArrayList<Doctor>> doctors;
-    public ComAdminFrame(CommunityAdminImp curAdmin, ArrayList<String> hospitals, ArrayList<Patient> patients, HashMap<String, ArrayList<Doctor>> doctors) {
+    List<Patient> patientlist;
+    public ComAdminFrame(CommunityAdminImp curAdmin, ArrayList<String> hospitals, ArrayList<String> patients, HashMap<String, ArrayList<Doctor>> doctors,List<Patient> patientlist) {
         this.curAdmin = curAdmin;
         this.hospitals = hospitals;
         this.patients = patients;
         this.doctors = doctors;
+        this.patientlist = patientlist;
         initComponents();
         preparetable();
     }
@@ -107,7 +109,7 @@ public class ComAdminFrame extends JFrame {
 
     private void ViewPatient(ActionEvent e) {
         // TODO add your code here
-        new displayInfo(patients).setVisible(true);
+        new displayInfo(curAdmin.getCurCom(),patientlist).setVisible(true);
     }
 
     private void viewDiagnosis(ActionEvent e) {
@@ -116,8 +118,8 @@ public class ComAdminFrame extends JFrame {
 
     private void addDoctor(ActionEvent e) {
         // TODO add your code here
-        if (doctorName.getText().length()==0){
-            JOptionPane.showMessageDialog(new JDialog(), ":please enter the name");
+        if (doctorName.getText().length()==0||doclogin.getText().length()==0||docpassword.getText().length()==0){
+            JOptionPane.showMessageDialog(new JDialog(), ":please enter all the information");
             return;
         }
         int selected_row = table1.getSelectedRow();
@@ -125,20 +127,32 @@ public class ComAdminFrame extends JFrame {
             JOptionPane.showMessageDialog(new JDialog(), ":please select one row to view");
             return;
         }
+
         TableModel tempmodel = table1.getModel();
         String hName = (String)tempmodel.getValueAt(selected_row,1);
-        doctors.get(hName).add(new Doctor(doctorName.getText(),hName));
+        for (Doctor d :
+                doctors.get(hName)) {
+            if (d.getName().equals(doctorName.getText())){
+                JOptionPane.showMessageDialog(new JDialog(), ":doctor name existed");
+                return;
+            }
+        }
+        doctors.get(hName).add(new Doctor(doctorName.getText(),hName,doclogin.getText(),docpassword.getText()));
         doctorName.setText("");
         preparetable();
     }
 
     private void addPatient(ActionEvent e) {
         // TODO add your code here
-        if (patientName.getText().length()==0){
-            JOptionPane.showMessageDialog(new JDialog(), ":please enter the name");
+        if (patientName.getText().length()==0||login.getText().length()==0||password.getText().length()==0){
+            JOptionPane.showMessageDialog(new JDialog(), ":please enter all the information");
             return;
         }
-        patients.add(new Patient("Toronto",curAdmin.getCurCom(),patientName.getText()));
+        //patients.add(patientName.getText());
+        Patient p = new Patient("city1",curAdmin.getCurCom(),patientName.getText());
+        p.setAccount(login.getText());
+        p.setPassword(password.getText());
+        patientlist.add(p);
         patientName.setText("");
     }
 
@@ -157,6 +171,13 @@ public class ComAdminFrame extends JFrame {
             if (d.getName().equals(dName)){
                 String newName = doctorUpdateName.getText().length()==0 ? dName:doctorUpdateName.getText();
                 String newHospital = doctorUpdateHospital.getText().length()==0 ? hName:doctorUpdateHospital.getText();
+                for (Doctor d1 :
+                        doctors.get(newHospital)) {
+                    if (d1.getName().equals(newName)){
+                        JOptionPane.showMessageDialog(new JDialog(), ":doctor name existed");
+                        return;
+                    }
+                }
                 if (!doctors.containsKey(newHospital)){
                     JOptionPane.showMessageDialog(new JDialog(), ":hospital not existed");
                     return;
@@ -232,6 +253,15 @@ public class ComAdminFrame extends JFrame {
         firstDoctor = new JTextField();
         label6 = new JLabel();
         newHospital = new JTextField();
+        label7 = new JLabel();
+        login = new JTextField();
+        label8 = new JLabel();
+        password = new JTextField();
+        label9 = new JLabel();
+        doclogin = new JTextField();
+        label10 = new JLabel();
+        label11 = new JLabel();
+        docpassword = new JTextField();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -287,6 +317,18 @@ public class ComAdminFrame extends JFrame {
         //---- label6 ----
         label6.setText(bundle.getString("ComAdminFrame.label6.text"));
 
+        //---- label7 ----
+        label7.setText(bundle.getString("ComAdminFrame.label7.text"));
+
+        //---- label8 ----
+        label8.setText(bundle.getString("ComAdminFrame.label8.text"));
+
+        //---- label9 ----
+        label9.setText(bundle.getString("ComAdminFrame.label9.text"));
+
+        //---- label10 ----
+        label10.setText(bundle.getString("ComAdminFrame.label10.text"));
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
@@ -295,51 +337,72 @@ public class ComAdminFrame extends JFrame {
                     .addGap(26, 26, 26)
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGroup(contentPaneLayout.createParallelGroup()
+                            .addComponent(label8)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(password, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                 .addComponent(button6)
                                 .addGroup(contentPaneLayout.createSequentialGroup()
                                     .addComponent(label2)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(patientName, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(patientName, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addComponent(label7)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(login)))
                             .addGap(36, 36, 36)
                             .addGroup(contentPaneLayout.createParallelGroup()
                                 .addComponent(button4)
                                 .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 664, GroupLayout.PREFERRED_SIZE)
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addGroup(contentPaneLayout.createParallelGroup()
-                                        .addComponent(button3, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(contentPaneLayout.createSequentialGroup()
-                                            .addComponent(label1)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(doctorName, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(contentPaneLayout.createParallelGroup()
-                                        .addGroup(contentPaneLayout.createSequentialGroup()
-                                            .addGap(69, 69, 69)
-                                            .addComponent(label3)
-                                            .addGap(6, 6, 6)
-                                            .addComponent(doctorUpdateName, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                                            .addGap(63, 63, 63)
-                                            .addGroup(contentPaneLayout.createParallelGroup()
-                                                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                                                    .addComponent(label4)
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(doctorUpdateHospital, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(button1, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE))))
-                                    .addGap(98, 98, 98)
-                                    .addComponent(button5)
-                                    .addGap(31, 31, 31)
-                                    .addComponent(button2))))
-                        .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(GroupLayout.Alignment.LEADING, contentPaneLayout.createSequentialGroup()
-                                .addComponent(label6)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(newHospital, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
-                            .addComponent(button7, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addComponent(label5)
-                            .addGap(20, 20, 20)
-                            .addComponent(firstDoctor, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(contentPaneLayout.createSequentialGroup()
+                                        .addGroup(contentPaneLayout.createParallelGroup()
+                                            .addComponent(button3, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(label9)
+                                                    .addComponent(label1))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(contentPaneLayout.createParallelGroup()
+                                                    .addComponent(doctorName, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(doclogin, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(contentPaneLayout.createParallelGroup()
+                                            .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addGap(69, 69, 69)
+                                                .addComponent(label3)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(doctorUpdateName, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                                                .addGap(63, 63, 63)
+                                                .addGroup(contentPaneLayout.createParallelGroup()
+                                                    .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                                                        .addComponent(label4)
+                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(doctorUpdateHospital, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(button1, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(98, 98, 98)
+                                        .addGroup(contentPaneLayout.createParallelGroup()
+                                            .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addComponent(button5)
+                                                .addGap(31, 31, 31)
+                                                .addComponent(button2))
+                                            .addComponent(button7, GroupLayout.PREFERRED_SIZE, 266, GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(contentPaneLayout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
+                                        .addComponent(label10)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(docpassword, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(label11, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(contentPaneLayout.createParallelGroup()
+                                            .addComponent(label6)
+                                            .addComponent(label5))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(contentPaneLayout.createParallelGroup()
+                                            .addComponent(firstDoctor, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(newHospital, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)))))))
                     .addContainerGap(102, Short.MAX_VALUE))
         );
         contentPaneLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {button2, button5, button6});
@@ -358,7 +421,20 @@ public class ComAdminFrame extends JFrame {
                                 .addComponent(label2)
                                 .addComponent(patientName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(label1)
-                                .addComponent(doctorName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(doctorName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label7)
+                                .addComponent(login, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label9)
+                                .addComponent(doclogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label8)
+                                .addComponent(password, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label10)
+                                .addComponent(label11)
+                                .addComponent(docpassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(31, 31, 31)
                             .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -367,27 +443,28 @@ public class ComAdminFrame extends JFrame {
                                 .addComponent(button1)
                                 .addComponent(button5)
                                 .addComponent(button2))
-                            .addGap(3, 3, 3)
+                            .addGap(10, 10, 10)
                             .addGroup(contentPaneLayout.createParallelGroup()
                                 .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addGap(7, 7, 7)
-                                    .addComponent(label3))
-                                .addComponent(doctorUpdateName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addGap(26, 26, 26)
+                                    .addGap(32, 32, 32)
+                                    .addComponent(button7))
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(doctorUpdateName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(label3))
+                                    .addGap(19, 19, 19)
+                                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(doctorUpdateHospital, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(label4))))
+                            .addGap(10, 10, 10)
                             .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(doctorUpdateHospital, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label4))))
-                    .addGap(60, 60, 60)
-                    .addComponent(button7)
-                    .addGap(18, 18, 18)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label6)
-                        .addComponent(newHospital, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(6, 6, 6)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label5)
-                        .addComponent(firstDoctor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(164, Short.MAX_VALUE))
+                                .addComponent(newHospital, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label6))
+                            .addGap(18, 18, 18)
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(label5)
+                                .addComponent(firstDoctor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                    .addContainerGap(250, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -416,5 +493,14 @@ public class ComAdminFrame extends JFrame {
     private JTextField firstDoctor;
     private JLabel label6;
     private JTextField newHospital;
+    private JLabel label7;
+    private JTextField login;
+    private JLabel label8;
+    private JTextField password;
+    private JLabel label9;
+    private JTextField doclogin;
+    private JLabel label10;
+    private JLabel label11;
+    private JTextField docpassword;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

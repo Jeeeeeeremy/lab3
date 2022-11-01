@@ -7,8 +7,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:26:p, par l {seq {par l {comp button6:1::p::p, seq {comp label2:::p::p, space :::p, comp patientName:::p:98:p}}, space :p:36:p, par l {comp button4:::p::p, comp scrollPane1:::p:664:p, seq {par l {comp button3::l:p:153:p, seq l {comp label1:::p::p, space :::p, comp doctorName:::p:98:p}}, par l {seq {space :p:69:p, comp label3:2::p::p, space :6:6:p, comp doctorUpdateName:::p:98:p}, seq t {space :p:63:p, par l {seq t {comp label4:2::p::p, space :::p, comp doctorUpdateHospital:::p:98:p}, comp button1::t:p:162:p}}}, space :p:98:p, comp button5:1::p::p, space :p:31:p, comp button2:1::p::p}}}, par t:l::p {seq l {comp label6:::p::p, space u:::p, comp newHospital::::166:x}, comp button7::l:::x}, seq l {comp label5:::p::p, space :p:20:p, comp firstDoctor:::p:168:p}}, space ::102:x}}"
-			"$verticalGroup": "par l {seq l {space :p:49:p, comp button4:::p::p, space :p:33:p, comp scrollPane1:::p:274:p, par l {seq l {space :p:92:p, par b {comp label2::b:p::p, comp patientName::b:p::p, comp label1::b:p::p, comp doctorName::b:p::p}}, seq l {space :p:31:p, par b {comp button6::b:p::p, comp button3::b:p::p, comp button1::b:p::p, comp button5::b:p::p, comp button2::b:p::p}, space :p:3:p, par l {seq l {space :7:7:p, comp label3:::p::p}, comp doctorUpdateName:::p::p}, space :p:26:p, par b {comp doctorUpdateHospital::b:p::p, comp label4::b:p::p}}}, space :p:60:p, comp button7:::p::p, space s:::p, par b {comp label6::b:p::p, comp newHospital::b:p::p}, space :p:6:p, par b {comp label5::b:p::p, comp firstDoctor::b:p::p}, space ::164:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:26:p, par l {seq {comp label8:::p::p, space :::p, comp password:::p:95:p}, seq {par l:::p {comp button6:1::p::p, seq {comp label2:::p::p, space :::p, comp patientName:::p:98:p}, seq {comp label7:::p::p, space u:::p, comp login:::::x}}, space :p:36:p, par l {comp button4:::p::p, comp scrollPane1:::p:664:p, par t:l::p {seq {par l {comp button3::l:p:153:p, seq l {par t {comp label9:::p::p, comp label1:::p::p}, space :::p, par l {comp doctorName:::p:98:p, comp doclogin::t:p:98:p}}}, par l {seq {space :p:69:p, comp label3:2::p::p, space :::p, comp doctorUpdateName:::p:98:p}, seq t {space :p:63:p, par l {seq t {comp label4:2::p::p, space :::p, comp doctorUpdateHospital:::p:98:p}, comp button1::t:p:162:p}}}, space :p:98:p, par l {seq {comp button5:1::p::p, space :p:31:p, comp button2:1::p::p}, comp button7:::p:266:p}}, seq t {space :p:4:p, comp label10:::p::p, space :::p, comp docpassword:::p:111:p, space :::x, comp label11:::p:92:p, space :::p, par l {comp label6::l:p::p, comp label5::l:p::p}, space s:::p, par l {comp firstDoctor:::p:168:p, comp newHospital:::p:166:p}}}}}}, space ::102:x}}"
+			"$verticalGroup": "par l {seq l {space :p:49:p, comp button4:::p::p, space :p:33:p, comp scrollPane1:::p:274:p, par l {seq l {space :p:92:p, par b {comp label2::b:p::p, comp patientName::b:p::p, comp label1::b:p::p, comp doctorName::b:p::p}, space u:::p, par b {comp label7::b:p::p, comp login::b:p::p, comp label9::b:p::p, comp doclogin::b:p::p}, space u:::p, par b {comp label8::b:p::p, comp password::b:p::p, comp label10::b:p::p, comp label11::b:p::p, comp docpassword::b:p::p}}, seq l {space :p:31:p, par b {comp button6::b:p::p, comp button3::b:p::p, comp button1::b:p::p, comp button5::b:p::p, comp button2::b:p::p}, space :p:10:p, par l {seq {space :p:32:p, comp button7:::p::p}, seq {par b {comp doctorUpdateName::b:p::p, comp label3::b:p::p}, space :p:19:p, par b {comp doctorUpdateHospital::b:p::p, comp label4::b:p::p}}}, space :p:10:p, par b {comp newHospital::b:p::p, comp label6::b:p::p}, space s:::p, par l {comp label5:::p::p, comp firstDoctor:::p::p}}}, space ::250:x}}"
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -93,6 +93,37 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "newHospital"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": new FormMessage( null, "ComAdminFrame.label7.text" )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "login"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": new FormMessage( null, "ComAdminFrame.label8.text" )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "password"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label9"
+				"text": new FormMessage( null, "ComAdminFrame.label9.text" )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "doclogin"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label10"
+				"text": new FormMessage( null, "ComAdminFrame.label10.text" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label11"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "docpassword"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 25, 5 )

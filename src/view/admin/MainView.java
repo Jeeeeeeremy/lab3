@@ -6,6 +6,7 @@ package view.admin;
 
 import java.awt.event.*;
 import controller.Admin.AdminDir;
+import controller.Admin.AdminImp;
 import controller.Admin.CommunityAdminImp;
 import model.Doctor;
 import model.Patient;
@@ -73,17 +74,18 @@ public class MainView extends JFrame {
         }
         if (ComAdmin.isSelected()){
             if (adminDir.getCommunityAdmins().get(login.getText()).getPassword().equals(password.getText())){
-                new ComAdminFrame().setVisible(true);
                 //load community admin page
                 CommunityAdminImp curAdmin = adminDir.getCommunityAdmins().get(login.getText());
-                new ComAdminFrame(curAdmin,communityDirectory.get(curAdmin.getCurCom()),ComToPatients.get(curAdmin.getCurCom()),hospitals).setVisible(true);
+                new ComAdminFrame(curAdmin,communityDirectory.get(curAdmin.getCurCom()),ComToPatients.get(curAdmin.getCurCom()),hospitals,patientList).setVisible(true);
             }else {
                 JOptionPane.showMessageDialog(new JDialog(), ":password wrong");
                 return;
             }
         }else {
-            if (adminDir.getAdmins().get(login.getText()).equals(password.getText())){
+            if (adminDir.getAdmins().get(login.getText()).getPassword().equals(password.getText())){
                 //load resource admin page
+                AdminImp curAdmin = adminDir.getAdmins().get(login.getText());
+                new ResAdminView(curAdmin,communityDirectory,ComToPatients,hospitals,adminDir,patientList).setVisible(true);
             }else {
                 JOptionPane.showMessageDialog(new JDialog(), ":password wrong");
                 return;

@@ -27,16 +27,18 @@ public class ResAdminView extends JFrame {
     private String[][] data;
     AdminImp curAdmin;
     HashMap<String,ArrayList<String>> communityDirectory;
-    HashMap<String,ArrayList<Patient>> ComToPatients;
+    HashMap<String,ArrayList<String>> ComToPatients;
     HashMap<String, ArrayList<Doctor>> hospitals;
     AdminDir adminDir;
-    public ResAdminView(AdminImp curAdmin, HashMap<String,ArrayList<String>> communityDirectory, HashMap<String,ArrayList<Patient>>
-            ComToPatients, HashMap<String, ArrayList<Doctor>> hospitals, AdminDir adminDir) {
+    List<Patient> patientlist;
+    public ResAdminView(AdminImp curAdmin, HashMap<String,ArrayList<String>> communityDirectory, HashMap<String,ArrayList<String>>
+            ComToPatients, HashMap<String, ArrayList<Doctor>> hospitals, AdminDir adminDir,List<Patient> patientlist) {
         this.curAdmin = curAdmin;
         this.communityDirectory = communityDirectory;
         this.ComToPatients = ComToPatients;
         this.hospitals = hospitals;
         this.adminDir = adminDir;
+        this.patientlist = patientlist;
         initComponents();
         comName.addItem("");
         for (String com :
@@ -57,7 +59,7 @@ public class ResAdminView extends JFrame {
             JOptionPane.showMessageDialog(new JDialog(), ":please select one community");
             return;
         }
-        new ComAdminFrame(new CommunityAdminImp(coName) ,communityDirectory.get(coName),ComToPatients.get(coName),hospitals).setVisible(true);
+        new ComAdminFrame(new CommunityAdminImp(coName) ,communityDirectory.get(coName),ComToPatients.get(coName),hospitals,patientlist).setVisible(true);
     }
 
     private void addCom(ActionEvent e) {
