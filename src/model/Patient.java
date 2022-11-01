@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Patient {
     String city;
@@ -8,15 +9,24 @@ public class Patient {
     String name;
     String account;
     String password;
-    ArrayList<Encounter> encounterHistory;
+    LinkedList<Encounter> encounterHistory;
 
     public Patient() {}
 
-    public Patient(String city, String community, String name, ArrayList<Encounter> encounterHistory) {
+    public Patient(String city, String community, String name, LinkedList<Encounter> encounterHistory) {
         this.city = city;
         this.community = community;
         this.name = name;
         this.encounterHistory = encounterHistory;
+    }
+
+    public Patient(String city, String community, String name, LinkedList<Encounter> encounterHistory, String account, String password){
+        this.city = city;
+        this.community = community;
+        this.name = name;
+        this.encounterHistory = encounterHistory;
+        this.account = account;
+        this.password = password;
     }
 
     public Patient(String city, String community, String name) {
@@ -65,11 +75,11 @@ public class Patient {
         this.password = password;
     }
 
-    public ArrayList<Encounter> getEncounterHistory() {
+    public LinkedList<Encounter> getEncounterHistory() {
         return encounterHistory;
     }
 
-    public void setEncounterHistory(ArrayList<Encounter> encounterHistory) {
+    public void setEncounterHistory(LinkedList<Encounter> encounterHistory) {
         this.encounterHistory = encounterHistory;
     }
 

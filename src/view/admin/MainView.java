@@ -6,7 +6,6 @@ package view.admin;
 
 import java.awt.event.*;
 import controller.Admin.AdminDir;
-import controller.Admin.AdminImp;
 import controller.Admin.CommunityAdminImp;
 import model.Doctor;
 import model.Patient;
@@ -27,10 +26,10 @@ public class MainView extends JFrame {
     HashMap<String, ArrayList<Doctor>> hospitals;
     HashMap<String,ArrayList<String>> communityDirectory;
     HashMap<String, ArrayList<String>> cityDirectory;
-    HashMap<String,ArrayList<Patient>> ComToPatients;
+    HashMap<String,ArrayList<String>> ComToPatients;
     public MainView(AdminDir adminDir, List<Patient> patientList,
                     HashMap<String, ArrayList<Doctor>> hospitals, HashMap<String,ArrayList<String>> communityDirectory,
-                    HashMap<String, ArrayList<String>> cityDirectory,HashMap<String,ArrayList<Patient>> ComToPatients) {
+                    HashMap<String, ArrayList<String>> cityDirectory,HashMap<String,ArrayList<String>> ComToPatients) {
         initComponents();
         this.adminDir = adminDir;
         this.patientList = patientList;
@@ -73,21 +72,20 @@ public class MainView extends JFrame {
             return;
         }
         if (ComAdmin.isSelected()){
-            if (adminDir.getCommunityAdmins().containsKey(login.getText())&&adminDir.getCommunityAdmins().get(login.getText()).getPassword().equals(password.getText())){
+            if (adminDir.getCommunityAdmins().get(login.getText()).getPassword().equals(password.getText())){
+                new ComAdminFrame().setVisible(true);
                 //load community admin page
                 CommunityAdminImp curAdmin = adminDir.getCommunityAdmins().get(login.getText());
                 new ComAdminFrame(curAdmin,communityDirectory.get(curAdmin.getCurCom()),ComToPatients.get(curAdmin.getCurCom()),hospitals).setVisible(true);
             }else {
-                JOptionPane.showMessageDialog(new JDialog(), ":password wrong or admin not existed");
+                JOptionPane.showMessageDialog(new JDialog(), ":password wrong");
                 return;
             }
         }else {
-            if (adminDir.getAdmins().containsKey(login.getText())&&adminDir.getAdmins().get(login.getText()).getPassword().equals(password.getText())){
+            if (adminDir.getAdmins().get(login.getText()).equals(password.getText())){
                 //load resource admin page
-                AdminImp curAdmin = adminDir.getAdmins().get(login.getText());
-                new ResAdminView(curAdmin,communityDirectory,ComToPatients,hospitals,adminDir).setVisible(true);
             }else {
-                JOptionPane.showMessageDialog(new JDialog(), ":password wrong or admin not existed");
+                JOptionPane.showMessageDialog(new JDialog(), ":password wrong");
                 return;
             }
         }
