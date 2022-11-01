@@ -2,8 +2,6 @@ package view.doctor;
 
 import model.Doctor;
 import model.Patient;
-import view.patient.PatientPanel;
-import view.patient.PatientRegisterPanel;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -160,7 +158,6 @@ public class DoctorLoginFram extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         String accountTextText = accountText.getText();
         String passwordTextText = passwordText.getText();
         if(accountTextText.isEmpty() || passwordTextText.isEmpty()){
@@ -181,7 +178,6 @@ public class DoctorLoginFram extends javax.swing.JFrame {
     }
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here
         this.jSplitPane1.setRightComponent(new DoctorRegisterPanel(hospitals, communityDirectory, cityDirectory, this));
     }
 

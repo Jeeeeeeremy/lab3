@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 public class VitalSigns {
     private double bodyTemperature;
 
@@ -48,5 +50,17 @@ public class VitalSigns {
 
     public void setSystolicPressure(int systolicPressure) {
         this.systolicPressure = systolicPressure;
+    }
+
+    public VitalSigns getRandomVitalSigns(){
+        VitalSigns vitalSigns = new VitalSigns();
+        Random random = new Random();
+        vitalSigns.setPulseRate(random.nextInt(50)+50);
+        vitalSigns.setSystolicPressure(random.nextInt(90)+70);
+        vitalSigns.setDiastolicPressure(random.nextInt(70)+40);
+        double d = random.nextDouble()*3+35;
+        String result = String .format("%.1f",d);
+        vitalSigns.setBodyTemperature(Double.parseDouble(result));
+        return vitalSigns;
     }
 }
