@@ -8,6 +8,7 @@ import java.awt.event.*;
 import java.util.*;
 import controller.Admin.CommunityAdminImp;
 import model.Doctor;
+import model.Encounter;
 import model.Patient;
 
 import javax.print.Doc;
@@ -137,7 +138,7 @@ public class ComAdminFrame extends JFrame {
                 return;
             }
         }
-        doctors.get(hName).add(new Doctor(doctorName.getText(),hName,doclogin.getText(),docpassword.getText()));
+        doctors.get(hName).add(new Doctor(doctorName.getText(),hName,doclogin.getText(),docpassword.getText(),new ArrayList<Patient>()));
         doctorName.setText("");
         preparetable();
     }
@@ -152,6 +153,7 @@ public class ComAdminFrame extends JFrame {
         Patient p = new Patient("city1",curAdmin.getCurCom(),patientName.getText());
         p.setAccount(login.getText());
         p.setPassword(password.getText());
+        p.setEncounterHistory(new LinkedList<Encounter>());
         patientlist.add(p);
         patientName.setText("");
     }
@@ -223,7 +225,7 @@ public class ComAdminFrame extends JFrame {
             return;
         }
         ArrayList<Doctor> list = new ArrayList<>();
-        list.add(new Doctor(firstDoctor.getText(),newHospital.getText()));
+        list.add(new Doctor(firstDoctor.getText(),newHospital.getText(),"firstDoctor.getText()","firstDoctor.getText()",new ArrayList<Patient>()));
         doctors.put(newHospital.getText(),list);
         hospitals.add(newHospital.getText());
         preparetable();
