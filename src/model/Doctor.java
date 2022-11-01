@@ -28,6 +28,12 @@ public class Doctor {
         this.patientWaitingList = patients;
     }
 
+    public Doctor(String name, String hName) {
+        this.name = name;
+        this.hospital = hName;
+    }
+
+
     public String getName() {
         return name;
     }
