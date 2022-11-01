@@ -156,8 +156,8 @@ public class PatientLoginFram  extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
+
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         String accountTextText = accountText.getText();
         String passwordTextText = passwordText.getText();
         if(accountTextText.isEmpty() || passwordTextText.isEmpty()){
@@ -177,11 +177,8 @@ public class PatientLoginFram  extends javax.swing.JFrame {
     }
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         this.jSplitPane1.setRightComponent(new PatientRegisterPanel(patients, ComToPatients, cityDirectory, hospitals, communityDirectory, this));
-
     }
-
 
     // Variables declaration - do not modify
     private javax.swing.JTextField accountText;

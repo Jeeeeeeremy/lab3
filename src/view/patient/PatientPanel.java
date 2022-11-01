@@ -131,19 +131,17 @@ public class PatientPanel extends javax.swing.JPanel {
     }// </editor-fold>
 
     private void AppointButtonActionPerformed(java.awt.event.ActionEvent evt,Doctor doctor) {
-        // TODO add your handling code here:
         if(null == doctor){
             JOptionPane.showMessageDialog(this,"Please select a doctor!");
             return;
         }
-        Encounter encounter = new Encounter(new VitalSigns(), "");
+        Encounter encounter = new Encounter(new VitalSigns().getRandomVitalSigns(), "");
         patient.getEncounterHistory().add(encounter);
         doctor.getPatientWaitingList().add(patient);
         JOptionPane.showMessageDialog(this,"Successful Appointment!");
     }
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         String text = searchText.getText();
         String doctorItem = this.doctorItem.getSelectedItem().toString();
         ArrayList<Doctor> doctorAllList = new ArrayList<>();

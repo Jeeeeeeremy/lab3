@@ -223,7 +223,6 @@ public class DoctorPanel extends javax.swing.JPanel {
     }// </editor-fold>
 
     private void diagnoseButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         int selectedRow = patientTable.getSelectedRow();
         if(selectedRow < 0){
             JOptionPane.showMessageDialog(this,"please select a patient to diagnose!");
@@ -236,7 +235,6 @@ public class DoctorPanel extends javax.swing.JPanel {
     }
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         String text = searchText.getText();
         String patientItem = this.patientItem.getSelectedItem().toString();
         ArrayList<Patient> result = new ArrayList<>();

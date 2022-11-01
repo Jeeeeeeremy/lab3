@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class PatientRegisterPanel extends javax.swing.JPanel {
     private List<Patient> patientList;
-    HashMap<String, ArrayList<Doctor>> hospitals;
-    HashMap<String,ArrayList<String>> communityDirectory;
+    private HashMap<String, ArrayList<Doctor>> hospitals;
+    private HashMap<String,ArrayList<String>> communityDirectory;
     private HashMap<String, ArrayList<String>> cityDirectory;
     private HashMap<String,ArrayList<String>> ComToPatients;
     private PatientLoginFram patientLoginFram;
